@@ -1,21 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login'; // Importa el componente de login
+import Registro from './components/Registro'; // Importa el componente de registro
 
 function App() {
   return (
-    <div>
-      <h1>Coffeed Feedback</h1>
-      <nav>
-        <ul>
-          <li><Link to="/">Inicio</Link></li>
-          
-          <li><Link to="/contacto">Contacto</Link></li>
-        </ul>
-      </nav>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" Component={Login} />
+        <Route path="/registro" Component={Registro} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
-
-
