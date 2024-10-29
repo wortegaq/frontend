@@ -69,5 +69,17 @@ body {
     justify-content: space-between;
   }
   
+  input {
+    color: black; /* Cambia el color del texto a negro para mejor visibilidad */
+    background-color: white; /* Asegúrate de que el fondo sea de color claro */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
   
+  /* Cambia el color del texto cuando el input está enfocado */
+  input:focus {
+    border-color: #007bff;
+  }
   

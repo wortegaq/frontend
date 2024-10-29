@@ -1,80 +1,52 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Importa los estilos
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-/>
+import axios from 'axios';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [correo, setCorreo] = useState('');
-  const [contraseña, setContraseña] = useState('');
+    const [Correo_Electronico, setCorreo_Electronico] = useState('');
+    const [password, setPassword] = useState('');
+    const [mensaje, setMensaje] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
-    const usuariosSimulados = [
-      { correo: 'usuario@correo.com', contraseña: '123456' },
-      { correo: 'usuario2@correo.com', contraseña: 'abcdef' },
-    ];
+        try {
+            const response = await axios.post('http://localhost:3000/api/usuarios/login', {
+                Correo_Electronico: Correo_Electronico,
+                password: password
+            });
 
-    const usuarioEncontrado = usuariosSimulados.find(
-      (usuario) => usuario.correo === correo && usuario.contraseña === contraseña
+            if (response.data.mensaje === 'Login exitoso') {
+                setMensaje(`Bienvenido, ${response.data.usuario.ID_Usuario}`);
+            } else {
+                setMensaje('Credenciales incorrectas');
+            }
+        } catch (error) {
+            setMensaje('Error en el inicio de sesión');
+            console.error(error);
+        }
+    };
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleLogin}>
+                <input
+                    type="email"
+                    placeholder="Correo electrónico"
+                    value={Correo_Electronico}
+                    onChange={(e) => setCorreo_Electronico(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="Contraseña"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit">Iniciar sesión</button>
+            </form>
+            <p>{mensaje}</p>
+        </div>
     );
-
-    if (usuarioEncontrado) {
-      console.log('Inicio de sesión exitoso');
-    } else {
-      console.log('Usuario no encontrado');
-    }
-  };
-
-  const handleRegister = () => {
-    navigate('/registro');
-  };
-
-  return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div className="input-icon">
-          <input
-            type="email"
-            placeholder="Username"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
-            required
-          />
-          <i className="icon fa fa-user"></i>
-        </div>
-        <div className="input-icon">
-          <input
-            type="password"
-            placeholder="Password"
-            value={contraseña}
-            onChange={(e) => setContraseña(e.target.value)}
-            required
-          />
-          <i className="icon fa fa-lock"></i>
-        </div>
-        <div className="login-options">
-          <label>
-            <input type="checkbox" /> Remember me
-          </label>
-          <a href="#">Forgot password?</a>
-        </div>
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        Don't have an account? <a href="#" onClick={handleRegister}>Register</a>
-      </p>
-    </div>
-  );
 };
 
 export default Login;
-
-
-
-
