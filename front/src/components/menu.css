@@ -1,0 +1,66 @@
+/* Fondo principal del menú */
+body, .menu-container {
+    margin: 0;
+    padding: 0;
+    background-color: #333333; /* Fondo oscuro */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Header estilo Starbucks que ocupa todo el ancho superior */
+.menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 15px 30px;
+    width: 100vw; /* Abarca todo el ancho de la ventana */
+    position: fixed; /* Fijar en la parte superior */
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegura que el header esté encima del contenido */
+}
+
+/* Sección izquierda del header */
+.menu-left {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaciado entre elementos de la izquierda */
+}
+
+/* Título de la aplicación */
+.app-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333; /* Color de texto oscuro */
+}
+
+/* Sección derecha del header */
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaciado entre elementos de la derecha */
+}
+
+/* Enlaces de navegación estilo Starbucks */
+.nav-link {
+    color: #333333; /* Texto oscuro */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Hover para enlaces de navegación */
+.nav-link:hover {
+    color: #1e3932; /* Color verde oscuro */
+}
+
+/* Ajuste para el contenido, para que no quede detrás del header */
+.menu-content {
+    padding-top: 80px; /* Agrega espacio para que el contenido no se superponga al header */
+}
