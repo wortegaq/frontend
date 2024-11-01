@@ -9,7 +9,6 @@ body, .menu-container {
     width: 100%;
 }
 
-/* Header estilo Starbucks que ocupa todo el ancho superior */
 .menu-header {
     display: flex;
     align-items: center;
